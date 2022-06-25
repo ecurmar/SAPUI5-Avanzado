@@ -6,14 +6,45 @@
     <Page id="page" title="{i18n>title}">
         <content>
             <HBox >
-                <Label id="labelEmployee" labelFor="inputEmployee" text="{i18n>labelEmployee}" class="sapUiSmallMargin"/> 
-                <Input id="inputEmployee" maxLength="6" width="200px" class="sapUiSmallMarginEnd" liveChange="onValidate"/>
-                <Label id="labelCountry" labelFor="slCountry" text="{i18n>labelCountry}" class="sapUiSmallMargin" visible="false" />
-                <Select id="slCountry" forceSelection="false" visible="false">
-                    <core:Item  key="US" text="{i18n>CountryUS}" />
-                    <core:Item  key="UK" text="{i18n>CountryUK}" />
-                    <core:Item  key="ES" text="{i18n>CountryES}" />
+                <Label id="labelEmployee" labelFor="inputEmployee" text="{i18n>labelEmployee}" class="sapUiTinyMargin"/> 
+                <Input id="inputEmployee" value="{/employeeId}" maxLength="6" width="200px" class="sapUiSmallMarginEnd" />
+                <Label id="labelCountry" labelFor="slCountry" text="{i18n>labelCountry}" class="sapUiTinyMargin" visible="true" />
+                <Select id="slCountry" selectedKey="{/countryKey}" forceSelection="false" items="{/listCountry}" visible="true">
+                    <items>
+                        <core:Item  key="{key}" text="{text}" />
+                       
+                    </items>
                 </Select>
+                <Button id="btnFilter" text="{i18n>btnFilter}" icon="sap-icon://search" press="onFilter" class="sapUiSamllMarginEnd"  />
+                <Button id="btnClearFilter" text="{i18n>btnClearFilter}" icon="sap-icon://clear-filter" press="onClearFilter" class="sapUiSamllMarginEnd"  />
+            </HBox>
+            <HBox>
+                <Table id="tableEmployees" items="{/employees}" >
+                    <columns>
+                        <Column>
+                            <Label text="Employee ID" />
+                        </Column>
+                        <Column>
+                            <Label text="Name" />
+                        </Column>
+                        <Column>
+                            <Label text="Country" />
+                        </Column>
+                        <Column>
+                            <Label text="City" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Active" press="showPostalCode">
+                            <cells>
+                                <Label text="{EmployeeID}"></Label>
+                                <Label text="{LastName}, {FirstName}"></Label>
+                                <Label text="{Country}"></Label>
+                                <Label text="{City}"></Label>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
             </HBox>
         </content>
     </Page>
