@@ -1,0 +1,38 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+<Panel>
+    <headerToolbar>
+        <Toolbar >
+            <core:Icon src="{= ${incidenceModel>Type}==='0' ? 'sap-icon://accept' : 
+                              ${incidenceModel>Type}==='1' ? 'sap-icon://alert' :
+                              ${incidenceModel>Type}==='2' ? 'sap-icon://decline' : ''}"/>
+
+            <Title text="{i18n>incidence} {= ${incidenceModel>IncidenceId} ? parseInt(${incidenceModel>IncidenceId}) : ''} {path: 'incidenceModel>CreationDate', formatter:'.Formatter.dateFormat'}" />
+            <ToolbarSpacer ></ToolbarSpacer>
+            <Button icon="sap-icon://save" press="onSaveIncidence" enabled="{= ${incidenceModel>EnabledSave} === true}"/>
+            <core:Icon src="sap-icon://delete" press="onDeleteIncidence"></core:Icon>
+        </Toolbar>
+    </headerToolbar>
+    <content>
+        <HBox>
+            <VBox class="sapUiSmallMarginEnd">
+                <Label text="{i18n>incidenceDate}" required="true" />
+                <DatePicker dateValue="{incidenceModel>CreationDate}" change="updateIncidenceCreationDate" valueState="{incidenceModel>CreationDateState}" />
+            </VBox>
+            <VBox visible="{= ${incidenceModel>CreationDate} !== undefined }" class="sapUiSmallMarginEnd">
+                <Label text="{i18n>incidenceReason}" class="sapUiSmallMarginEnd" required="true" />
+                <Input value="{incidenceModel>Reason}" change="updateIncidenceReason" valueState="{incidenceModel>ReasonState}"/>
+            </VBox>
+            <VBox visible="{= ${incidenceModel>CreationDate} !== undefined }" class="sapUiSmallMarginEnd">
+                <Text text="{i18n>incidenceType}" class="sapUiSmallMarginEnd"/>
+                <Select selectedKey="{incidenceModel>Type}" forceSelection="false" change="updateIncidenceType">
+                    <core:Item key="0" text="{i18n>incidentCorrect}"></core:Item>
+                    <core:Item key="1" text="{i18n>incidentPending}"></core:Item>
+                    <core:Item key="2" text="{i18n>incidentError}"></core:Item>
+                </Select>
+            </VBox>
+        </HBox>
+    </content>
+
+</Panel>
+
+</core:FragmentDefinition>

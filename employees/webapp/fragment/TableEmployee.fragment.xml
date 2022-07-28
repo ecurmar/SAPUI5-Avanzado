@@ -2,7 +2,7 @@
     <Panel>
         <Button id="btnShowCity" text="{i18n>showCity}" visible="{jsonModelConfig>/visibleBtnShowCity}" press="onShowCity" />
         <Button id="btnHideCity" text="{i18n>hideCity}" visible="{jsonModelConfig>/visibleBtnHideCity}" press="onHideCity" />
-        <Table id="tableEmployees" items="{jsonEmployees>/employees}" >
+        <Table id="tableEmployees" items="{odataNorthwind>/Employees}" >
             <columns>
                 <Column visible="{jsonModelConfig>/visibleID}">
                     <Label text="Employee ID" />
@@ -23,10 +23,10 @@
             <items>
                 <ColumnListItem type="Navigation" press="showEmployee">
                     <cells>
-                        <Label text="{jsonEmployees>EmployeeID}"></Label>
-                        <Label text="{jsonEmployees>LastName}, {jsonEmployees>FirstName}"></Label>
-                        <Label text="{jsonEmployees>Country}"></Label>
-                        <Label text="{jsonEmployees>City}"></Label>
+                        <Label text="{odataNorthwind>EmployeeID}"></Label>
+                        <Label text="{odataNorthwind>LastName}, {odataNorthwind>FirstName}"></Label>
+                        <Label text="{odataNorthwind>Country}"></Label>
+                        <Label text="{odataNorthwind>City}"></Label>
                         <core:Icon src="sap-icon://show"  press="showOrders"/>
                     </cells>
                 </ColumnListItem>
