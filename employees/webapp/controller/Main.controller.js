@@ -11,7 +11,7 @@ sap.ui.define([
             this._detailEmployeeView = this.getView().byId("detailEmployeeView");
         },
 
-        onInit: function () {
+        onAfterRendering: function () {
             var oJSONModelEmpl = new sap.ui.model.json.JSONModel();
             var oView = this.getView();
             var i18nBundle = oView.getModel("i18n").getResourceBundle();

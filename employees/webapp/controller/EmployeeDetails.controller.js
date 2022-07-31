@@ -1,9 +1,9 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "logaligroup/employees/controller/Base.controller",
     "logaligroup/employees/model/formatter",
     "sap/m/MessageBox"
 
-], function (Controller, formatter, MessageBox) {
+], function (Base, formatter, MessageBox) {
 
 
     function onInit() {
@@ -147,9 +147,18 @@ sap.ui.define([
 
     }
 
+    /*function toOrderDetails(oEvent) {
+
+        var orderID = oEvent.getSource().getBindingContext("odataNorthwind").getObject().OrderID;
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("RouteOrderDetails", {
+            OrderID : orderID
+        });
+    }*/
 
 
-    var EmployeeDetails = Controller.extend("logaligroup.employee.controller.EmployeeDetails", {});
+
+    var EmployeeDetails = Base.extend("logaligroup.employee.controller.EmployeeDetails", {});
 
 
     EmployeeDetails.prototype.onInit = onInit;
@@ -160,6 +169,7 @@ sap.ui.define([
     EmployeeDetails.prototype.updateIncidenceCreationDate = updateIncidenceCreationDate;
     EmployeeDetails.prototype.updadateIncidenceType = updateIncidenceType;
     EmployeeDetails.prototype.updateIncidenceReason = updateIncidenceReason;
+    //EmployeeDetails.prototype.toOrderDetails = toOrderDetails;
     return EmployeeDetails;
 
 
